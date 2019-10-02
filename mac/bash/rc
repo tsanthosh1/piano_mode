@@ -1,0 +1,196 @@
+#!/bin/bash
+
+#********************************************************
+#                        variables
+#********************************************************
+MY_PIANO_MODE_HOME="$1"
+MAC_HOME="$MY_PIANO_MODE_HOME/mac"
+MAC_BASH_HOME="$MAC_HOME/bash"
+MAC_BASHRC="$MAC_BASH_HOME/rc"
+
+MAC_SEIL_DEFAULT="$MAC_HOME/seil/default"
+MAC_SEIL_MODIFIED="$MAC_HOME/seil/modified"
+
+# colors
+BIGreen="\[\033[1;92m\]"      # Green
+BIPurple="\[\033[1;95m\]"     # Purple
+BCyan="\[\033[1;36m\]"        # Cyan
+BIWhite="\[\033[1;97m\]"      # White
+IYellow="\[\033[0;93m\]"      # Yellow
+
+export PATH=$PATH:~/Library/Android/sdk/platform-tools
+#*******************************************************
+#                       aliases
+#*******************************************************
+
+#new_alias_adding_marker
+
+alias jrun="java -jar build/libs/*.jar"
+alias gu="cd ~/Documents/mc-strategic/"
+alias api="cd ~/Documents/pricing/pricing-api/"
+alias sc="cd ~/Documents/pricing/service-contract-api"
+alias ui="cd ~/Documents/pricing/pricing-ui/"
+alias auth="cd ~/Documents/pricing/authorization_service"
+
+alias sb="source ~/.bash_profile"
+
+
+alias sdn='export short_dir_name=true'
+alias ldn='export short_dir_name=false'
+alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+alias ..='cd ../'                           # Go back 1 directory level
+alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+alias c='clear'                             # c:            Clear terminal display
+alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+alias qfind="find . -name "                 # qfind:    Quickly search for file
+
+# git aliases
+alias gs="git status"
+alias gsh="git stash"
+alias gp="git push origin HEAD"
+alias gb="git branch"
+alias gc="git checkout"
+alias gcm="git checkout master"
+alias gt="git checkout team/miracle"
+alias gpl="git pull --rebase"
+alias gcb="git checkout -b"
+alias gv="git commit -v"
+alias gva="git commit -va"
+alias gd="git diff"
+alias gsw="git show"
+alias g="git"
+
+alias pserver="python -m SimpleHTTPServer"
+
+
+alias e="echo"
+alias v="vim"
+alias r="ranger"
+alias lo="locate"
+
+
+#docker_aliases
+
+alias dl="docker ps -l -q"
+alias dps="docker ps"
+alias dpa="docker ps -a"
+alias di="docker images"
+
+# Get container IP
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+
+# Run deamonized container, e.g., $dkd base /bin/echo hello
+alias dkd="docker run -d -P"
+
+# Run interactive container, e.g., $dki base /bin/bash
+alias dki="docker run -i -t -P"
+
+# Execute interactive container, e.g., $dex base /bin/bash
+alias dex="docker exec -i -t"
+
+# Stop all containers
+dstop() { docker stop $(docker ps -a -q); }
+
+# Remove all containers
+drm() { docker rm $(docker ps -a -q); }
+
+# Stop and Remove all containers
+alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+
+
+########### react native
+
+alias adbtcp="adb reverse tcp:8081 tcp:8081"
+
+
+
+#format json in clipboard and copy
+alias fj="pbpaste | jq '.' | pbcopy"
+
+# Remove all images
+dri() { docker rmi $(docker images -q); }
+
+# Dockerfile build, e.g., $dbu tcnksm/test
+dbu() { docker build -t=$1 .; }
+
+# Show all alias related docker
+dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
+
+# Bash into running container
+dbash() { docker exec -it "$1" bash; }
+
+#********************************************************
+#                       functions
+#********************************************************
+### REEEEEEEEEEEEEEEEEEEEEEEEEEEED START #########################
+
+function run_test_feature_tag () {
+  npm run test-feature -- --tags "@$1"
+}
+
+function run_test_feature_file() {
+  npm run test-feature -- "$1"
+}
+alias itag='run_test_feature_tag'
+alias ifile='run_test_feature_file'
+### REEEEEEEEEEEEEEEEEEEEEEEEEEEED END ###########################
+function sq() {
+  sh ~/Documents/pricing/pricing-api/build_scripts/sqlcli.sh "$1"
+}
+
+function lb() {
+  sh ~/Documents/pricing/pricing-api/build_scripts/local_build.sh
+}
+
+function rdb() {
+  sh ~/Documents/pricing/pricing-api/build_scripts/resetDb.sh "$1"
+}
+
+function aoeu() {
+  #sh "$MAC_SEIL_DEFAULT";
+  /Applications/Karabiner.app/Contents/Library/bin/karabiner select_by_name "Default Key Profile";
+  xkbswitch -s 0;
+}
+
+function asdf(){
+  #sh "$MAC_SEIL_MODIFIED";
+  /Applications/Karabiner.app/Contents/Library/bin/karabiner select_by_name "Modified Key Profile";
+  xkbswitch -s 4;
+}
+
+#open this file for adding alias
+function aa(){
+  vim +/#new_alias_adding_marker "$MAC_BASHRC"
+}
+
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
+}
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+}
+
+function get_date {
+  date +%H:%M:%S
+}
+
+function get_directory_name {
+  if [ "$short_dir_name" = true ] ; then
+    echo -n "./" && basename "$PWD"
+  else 
+    dirs
+  fi
+}
+
+function gsa {
+  for a in *; do cd "$a"; git status; cd ..;  done
+}
+function tol {
+  pbpaste | tr '\n' ' ' | pbcopy
+}
+export PS1="$BIGreen\$(get_date)$BIPurple\$(get_directory_name)$BCyan\$(parse_git_branch)$BIWhite\$$IYellow "
+set completion-ignore-case on
+
+export GOPATH='/Users/tsanthosh/Documents/bumblebee'
+export GOROOT='/usr/local/go'
+export ANDROID_HOME='/Users/tsanthosh/Library/Android/sdk/'

@@ -1,0 +1,54 @@
+#!/bin/sh
+
+cli=/Applications/Seil.app/Contents/Library/bin/seil
+
+$cli set 63 57
+/bin/echo -n .
+$cli set enable_backslash 1
+/bin/echo -n .
+$cli set enable_capslock 1
+/bin/echo -n .
+$cli set enable_command_l 1
+/bin/echo -n .
+$cli set enable_command_r 1
+/bin/echo -n .
+$cli set enable_control_l 1
+/bin/echo -n .
+$cli set enable_control_r 1
+/bin/echo -n .
+$cli set enable_delete 1
+/bin/echo -n .
+$cli set enable_enter 1
+/bin/echo -n .
+$cli set enable_escape 1
+/bin/echo -n .
+$cli set enable_fn 57
+/bin/echo -n .
+$cli set enable_fn_modifier 57
+/bin/echo -n .
+$cli set enable_forward_delete 1
+/bin/echo -n .
+$cli set enable_function 57
+/bin/echo -n .
+$cli set enable_nonusbackslash 1
+/bin/echo -n .
+$cli set enable_nonuspound 1
+/bin/echo -n .
+$cli set enable_option_l 1
+/bin/echo -n .
+$cli set enable_option_r 1
+/bin/echo -n .
+$cli set enable_return 1
+/bin/echo -n .
+$cli set enable_shift_l 1
+/bin/echo -n .
+$cli set enable_shift_r 1
+/bin/echo -n .
+$cli set enable_space 1
+/bin/echo -n .
+$cli set enable_tab 1
+/bin/echo -n .
+$cli set keycode_capslock 57
+/bin/echo -n .
+$cli set keycode_shift_r 36
+/bin/echo -n .

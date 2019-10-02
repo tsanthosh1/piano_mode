@@ -1,0 +1,2 @@
+alias others="sh $MY_PIANO_MODE_HOME/mac/seil/default"
+alias itsme="sh $MY_PIANO_MODE_HOME/mac/seil/modified"
