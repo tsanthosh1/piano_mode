@@ -18,6 +18,7 @@ BCyan="\[\033[1;36m\]"        # Cyan
 BIWhite="\[\033[1;97m\]"      # White
 IYellow="\[\033[0;93m\]"      # Yellow
 
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 export PATH=$PATH:~/Library/Android/sdk/platform-tools
 #*******************************************************
 #                       aliases
@@ -131,8 +132,14 @@ function run_test_feature_tag () {
 function run_test_feature_file() {
   npm run test-feature -- "$1"
 }
+
+function run_test_feature_name() {
+  npm run test-feature -- --name "$1"
+}
+
 alias itag='run_test_feature_tag'
 alias ifile='run_test_feature_file'
+alias iname='run_test_feature_name'
 ### REEEEEEEEEEEEEEEEEEEEEEEEEEEED END ###########################
 function sq() {
   sh ~/Documents/pricing/pricing-api/build_scripts/sqlcli.sh "$1"
