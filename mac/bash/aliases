@@ -1,2 +1,115 @@
-alias others="sh $MY_PIANO_MODE_HOME/mac/seil/default"
-alias itsme="sh $MY_PIANO_MODE_HOME/mac/seil/modified"
+#!/usr/bin/env bash
+
+#*******************************************************
+#                       aliases
+#*******************************************************
+
+#new_alias_adding_marker
+
+alias ll="ls -alF"
+alias la="ls -A"
+alias l="ls -CF"
+
+alias down='cd ~/Downloads'
+alias des='cd ~/Desktop'
+alias fuck='eval $(thefuck $(fc -ln -1))'
+alias ff="fuck"
+
+alias grep='grep --color'
+
+
+alias mute="osascript -e 'set volume output muted true'"
+alias unmute="osascript -e 'set volume output muted false'"
+
+
+alias grep='grep --color=auto'
+
+alias jrun="java -jar build/libs/*.jar"
+alias gu="cd ~/Documents/mc-strategic/"
+alias api="cd ~/Documents/pricing/pricing-api/"
+alias sc="cd ~/Documents/pricing/service-contract-api"
+alias ui="cd ~/Documents/pricing/pricing-ui/"
+alias auth="cd ~/Documents/pricing/authorization_service"
+
+alias sb="source ~/.bash_profile"
+
+
+alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
+alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+alias c='clear'                             # c:            Clear terminal display
+alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+alias qfind="find . -name "                 # qfind:    Quickly search for file
+
+# git aliases
+alias gs="git status"
+alias gsh="git stash"
+alias gp="git push origin HEAD"
+alias gb="git branch"
+alias gc="git checkout"
+alias gcm="git checkout master"
+alias gt="git checkout team/miracle"
+alias gpl="git pull --rebase"
+alias gcb="git checkout -b"
+alias gv="git commit -v"
+alias gva="git commit -va"
+alias gd="git diff"
+alias gsw="git show"
+alias g="git"
+
+alias pserver="python -m SimpleHTTPServer"
+
+
+alias e="echo"
+alias v="vim"
+alias r="ranger"
+alias lo="locate"
+
+
+#docker_aliases
+
+alias dl="docker ps -l -q"
+alias dps="docker ps"
+alias dpa="docker ps -a"
+alias di="docker images"
+
+# Get container IP
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+
+# Run deamonized container, e.g., $dkd base /bin/echo hello
+alias dkd="docker run -d -P"
+
+# Run interactive container, e.g., $dki base /bin/bash
+alias dki="docker run -i -t -P"
+
+# Execute interactive container, e.g., $dex base /bin/bash
+alias dex="docker exec -i -t"
+
+########## Node ##############
+
+alias bb='npm run build'
+alias ss='npm run start'
+
+##### JSON ###########
+
+#format json in clipboard and copy
+alias fj="pbpaste | jq '.' | pbcopy"
+
+
+##### ANDROID #######
+alias adbtcp="adb reverse tcp:8081 tcp:8081"
+
+
+alias bi='brew install'
+
+
+alias pp='pbpaste'
+alias cc='pbcopy'
+
+alias ip='ipconfig getifaddr en0'
+
+alias u="youtube-dl --download-archive ~/Desktop/archive.txt -i "
+

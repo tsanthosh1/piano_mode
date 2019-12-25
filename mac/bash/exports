@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+export PATH=$PATH:~/Library/Android/sdk/platform-tools
+
+export GOPATH='/Users/tsanthosh/Documents/bumblebee'
+export GOROOT='/usr/local/go'
+export ANDROID_HOME='/Users/tsanthosh/Library/Android/sdk/'

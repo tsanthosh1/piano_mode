@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+### REEEEEEEEEEEEEEEEEEEEEEEEEEEED START #########################
+
+function run_test_feature_tag () {
+  npm run test-feature -- --tags "@$1"
+}
+
+function run_test_feature_file() {
+  npm run test-feature -- "$1"
+}
+
+function run_test_feature_name() {
+  npm run test-feature -- --name "$1"
+}
+
+alias itag='run_test_feature_tag'
+alias ifile='run_test_feature_file'
+alias iname='run_test_feature_name'
+### REEEEEEEEEEEEEEEEEEEEEEEEEEEED END ###########################

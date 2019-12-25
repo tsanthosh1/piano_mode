@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+
+
+# colors
+BIGreen="\[\033[1;92m\]"      # Green
+BIPurple="\[\033[1;95m\]"     # Purple
+BCyan="\[\033[1;36m\]"        # Cyan
+BIWhite="\[\033[1;97m\]"      # White
+IYellow="\[\033[0;93m\]"      # Yellow
+
+Green="\033[1;92m"      # Green
+
+
+alias sdn='export short_dir_name=true'
+alias ldn='export short_dir_name=false'
+
+
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
+}
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+}
+
+function get_date {
+  date +%H:%M:%S
+}
+
+function get_directory_name {
+  if [ "$short_dir_name" = true ] ; then
+    echo -n "./" && basename "$PWD"
+  else
+    dirs
+  fi
+}
+
+
+export PS1="$BIGreen\$(get_date)$BIPurple\$(get_directory_name)$BCyan\$(parse_git_branch)$BIWhite\$$IYellow "
+
+echo -ne "$Green"
+echo -ne "Good Morning, Santhosh! It's "; date '+%A, %B %-d %Y'
+uptime
+echo
+fortune
+echo
+
