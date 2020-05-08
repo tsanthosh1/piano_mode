@@ -5,7 +5,6 @@
 #*******************************************************
 
 #new_alias_adding_marker
-
 alias ll="ls -alF"
 alias la="ls -A"
 alias l="ls -CF"
@@ -59,7 +58,7 @@ alias gva="git commit -va"
 alias gd="git diff"
 alias gsw="git show"
 alias g="git"
-
+alias amendlast="git commit --amend --no-edit"
 alias pserver="python -m SimpleHTTPServer"
 
 
@@ -108,8 +107,10 @@ alias bi='brew install'
 
 alias pp='pbpaste'
 alias cc='pbcopy'
+alias pc="pbpaste  |  sed 's/^\$ //' | tr '\n' ' '  | pbcopy; echo 'Removed $ and new line character!'"
 
 alias ip='ipconfig getifaddr en0'
 
 alias u="youtube-dl --download-archive ~/Desktop/archive.txt -i "
 
+alias py="python3"
