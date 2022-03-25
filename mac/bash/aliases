@@ -3,8 +3,10 @@
 #*******************************************************
 #                       aliases
 #*******************************************************
-
+alias sp="/Users/tsanthosh/gtel/src-sw00176-gtel-aggregators/script/local/start-postgres.sh"
+alias cdd="/Users/tsanthosh/gtel/src-sw00176-gtel-aggregators/script/local/create-databases.sh"
 #new_alias_adding_marker
+alias tv="adb connect 192.168.43.244"
 alias ll="ls -alF"
 alias la="ls -A"
 alias l="ls -CF"
@@ -47,6 +49,7 @@ alias qfind="find . -name "                 # qfind:    Quickly search for file
 alias gs="git status"
 alias gsh="git stash"
 alias gp="git push origin HEAD"
+alias gsp="git submodule update --init --recursive"
 alias gb="git branch"
 alias gc="git checkout"
 alias gcm="git checkout master"
@@ -59,7 +62,7 @@ alias gd="git diff"
 alias gsw="git show"
 alias g="git"
 alias amendlast="git commit --amend --no-edit"
-alias pserver="python -m SimpleHTTPServer"
+alias pserver="python3 -m http.server"
 
 
 alias e="echo"
@@ -114,3 +117,5 @@ alias ip='ipconfig getifaddr en0'
 alias u="youtube-dl --download-archive ~/Desktop/archive.txt -i "
 
 alias py="python3"
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+
