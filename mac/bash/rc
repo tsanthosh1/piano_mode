@@ -14,10 +14,49 @@ HISTCONTROL=ignoredups:ignorespace
 HISTSIZE=100000
 HISTFILESIZE=2000000
 
-shopt -s histappend
-shopt -s checkwinsize
-shopt -s cdspell
+#shopt -s histappend
+#shopt -s checkwinsize
+#shopt -s cdspell
+# Function to set tab name and color in iTerm2 (pastel colors)
+function set_iterm_tab() {
+  local tab_name="$1"
+  local color="$2"  # RGB values (e.g., "255,192,203" for pastel pink)
+
+  # Set tab name
+  echo -ne "\033]0;${tab_name}\007"
+
+  # Set tab color (iTerm2 proprietary escape sequence)
+  echo -ne "\033]6;1;bg;red;brightness;${color%%,*}\a"
+  echo -ne "\033]6;1;bg;green;brightness;${color#*,};${color%*,}\a"
+  echo -ne "\033]6;1;bg;blue;brightness;${color##*,}\a"
+}
+
+# Function to check directory and apply settings
+function auto_set_tab() {
+  case "$PWD" in
+    *"/Users/tsanthosh/work/chargebee-app"*)
+      set_iterm_tab "cbapp" "173,216,230"  # Light Blue (Pastel)
+      ;;
+    *"/Users/tsanthosh/work/cb-payments-portal"*)
+      set_iterm_tab "payments-portal" "255,218,185"  # Peach (Pastel)
+      ;;
+    *"/Users/tsanthosh/work/chargebee-ui"*)
+      set_iterm_tab "ui" "144,238,144"  # Light Green (Pastel)
+      ;;
+    *"/Users/tsanthosh/work/app-audits"*)
+      set_iterm_tab "app-audits" "255,182,193"  # Light Pink (Pastel)
+      ;;
+    *"/Users/tsanthosh/work/chargebee-core"*)
+      set_iterm_tab "cb-core" "221,160,221"  # Plum (Pastel)
+      ;;
+    *)
+      # Default: Use the current directory name and a neutral gray color
+      dir_name=$(basename "$PWD")
+      set_iterm_tab "$dir_name" "200,200,200"
+      ;;
+  esac
+}
 
 
-
-
+# Hook to run auto_set_tab when changing directories in Bash
+PROMPT_COMMAND="auto_set_tab; $PROMPT_COMMAND"

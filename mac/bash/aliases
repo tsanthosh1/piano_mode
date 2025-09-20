@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 #*******************************************************
 #                       aliases
 #*******************************************************
@@ -15,6 +16,7 @@ alias down='cd ~/Downloads'
 alias des='cd ~/Desktop'
 alias fuck='eval $(thefuck $(fc -ln -1))'
 alias ff="fuck"
+alias rmr="rm -rf"
 
 alias grep='grep --color'
 
@@ -29,7 +31,6 @@ alias jrun="java -jar build/libs/*.jar"
 alias gu="cd ~/Documents/mc-strategic/"
 alias api="cd ~/Documents/pricing/pricing-api/"
 alias sc="cd ~/Documents/pricing/service-contract-api"
-alias ui="cd ~/Documents/pricing/pricing-ui/"
 alias auth="cd ~/Documents/pricing/authorization_service"
 
 alias sb="source ~/.bash_profile"
@@ -49,15 +50,17 @@ alias qfind="find . -name "                 # qfind:    Quickly search for file
 alias gs="git status"
 alias gsh="git stash"
 alias gp="git push origin HEAD"
+alias gpn="git push origin HEAD --no-verify"
 alias gsp="git submodule update --init --recursive"
 alias gb="git branch"
 alias gc="git checkout"
 alias gcm="git checkout master"
 alias gt="git checkout team/miracle"
-alias gpl="git pull --rebase"
+alias gcp="git cherry-pick"
 alias gcb="git checkout -b"
 alias gv="git commit -v"
 alias gva="git commit -va"
+alias gvn="git commit -va --no-verify"
 alias gd="git diff"
 alias gsw="git show"
 alias g="git"
@@ -118,4 +121,48 @@ alias u="youtube-dl --download-archive ~/Desktop/archive.txt -i "
 
 alias py="python3"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias trust="sudo xattr -d com.apple.quarantine"
+alias gw="./gradlew"
 
+
+alias got="generate_otp_with_secret_from_clipboard"
+
+alias is="itermocil "
+
+alias npum="/Users/tsanthosh/.nvm/versions/node/v18.18.2/bin/npm"
+alias esl="./node_modules/eslint/bin/eslint.js"
+
+alias code="open -a \"/Applications/Visual Studio Code.app\""
+alias idea="/Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea"
+alias tn="tabname"
+
+alias cbm="mv ~/.gradle/init.d.bk ~/.gradle/init.d"
+alias pem="mv ~/.gradle/init.d ~/.gradle/init.d.bk"
+alias nt="nvm use 20"
+alias gwork='gituser_work'
+alias gper='gituser_personal'
+
+alias oa="code ~/piano_mode/mac/bash/aliases"
+alias piano="code ~/piano_mode"
+alias antt="./ant/bin/ant"
+alias emptycommit="git commit --allow-empty -m 'Trigger Build'"
+alias conf="code ~/work/chargebee-app/webapp/conf/environment/assets.conf"
+
+# alias auto-click="/Users/tsanthosh/work/auto-web-login/auto-click/target/release/auto-click"
+alias co="code ."
+alias tf="terraform"
+
+alias fn="find . -type f -iname"
+alias myip='curl ipinfo.io/ip'
+alias weather='curl wttr.in/chennai'
+
+alias :q='exit'
+alias psf="ps -ef | grep"
+
+
+alias hi='cd'
+alias jv="java -version"
+alias gmp="./gradlew publishToMavenLocal"
+alias assemble="./gradlew assemble"
+alias ts="convert_timestamp"
+alias ag="alias | grep "

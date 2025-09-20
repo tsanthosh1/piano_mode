@@ -1,47 +1,55 @@
 #!/usr/bin/env bash
 
+# Colors
+BIGreen="\[\033[1;92m\]"
+BIPurple="\[\033[1;95m\]"
+BCyan="\[\033[1;36m\]"
+BIWhite="\[\033[1;97m\]"
+IYellow="\[\033[0;93m\]"
 
+Green="\033[1;92m"
+RedResult="\[\033[0;31m\]"
+GreenResult="\[\033[0;32m\]"
 
-# colors
-BIGreen="\[\033[1;92m\]"      # Green
-BIPurple="\[\033[1;95m\]"     # Purple
-BCyan="\[\033[1;36m\]"        # Cyan
-BIWhite="\[\033[1;97m\]"      # White
-IYellow="\[\033[0;93m\]"      # Yellow
-
-Green="\033[1;92m"      # Green
-
-
+# Short dir toggle
 alias sdn='export short_dir_name=true'
 alias ldn='export short_dir_name=false'
 
-
+# Efficient Git status check
 function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
+  [[ -n $(git status --porcelain 2>/dev/null) ]] && echo "*"
 }
+
 function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
-}
-
-function get_date {
-  date +%H:%M:%S
-}
-
-function get_directory_name {
-  if [ "$short_dir_name" = true ] ; then
-    echo -n "./" && basename "$PWD"
-  else
-    dirs
+  local branch_info
+  branch_info=$(git branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/")
+  
+  if [ -n "$branch_info" ]; then
+    echo "[$branch_info$(parse_git_dirty)]"
   fi
 }
 
+function get_date {
+  LC_TIME=en_US.UTF-8 date +"%I:%M:%S %p"
+}
 
-export PS1="$BIGreen\$(get_date)$BIPurple\$(get_directory_name)$BCyan\$(parse_git_branch)$BIWhite\$$IYellow "
+function get_directory_name {
+  if [ "$short_dir_name" = true ]; then
+    echo -n "./$(basename "$PWD")"
+  else
+    echo -n "${PWD/#$HOME/~}"
+  fi
+}
 
-echo -ne "$Green"
-echo -ne "Good Morning, Santhosh! It's "; date '+%A, %B %-d %Y'
-uptime
-echo
-fortune
-echo
+function get_previous_command_result {
+  local exit_code=$?
+  echo -n "$exit_code"
+}
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Final prompt string
+export PS1='
+
+($(get_previous_command_result)) '"$BIGreen"'$(get_date)'"$BIPurple"' $(get_directory_name) '"$BCyan"'$(parse_git_branch)'"$BIWhite"'
+\$'"$IYellow "' '

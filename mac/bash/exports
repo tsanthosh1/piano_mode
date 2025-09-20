@@ -1,9 +1,25 @@
 #!/usr/bin/env bash
 
-
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+export M2_HOME='/Users/tsanthosh/Documents/apache-maven-3.9.9'
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home/
 export PATH=$PATH:~/Library/Android/sdk/platform-tools
+export PATH=$PATH:~/bin
+export PATH=$PATH:/Users/tsanthosh/Documents/google-cloud-sdk/bin
+export PATH="$PATH:${M2_HOME}/bin"
+export AWS_PROFILE=cb-auth
 
-export GOPATH='/Users/tsanthosh/Documents/bumblebee'
-export GOROOT='/usr/local/go'
+
+# export GOPATH='/Users/tsanthosh/Documents/bumblebee'
+# export GOROOT='/usr/local/go'
+unset GOROOT
 export ANDROID_HOME='/Users/tsanthosh/Library/Android/sdk/'
+alias python="python3"
+export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+export PATH=/Users/tsanthosh/flutter/bin:$PATH
+export PATH="/Users/tsanthosh/work/auto-web-login/auto-click/target/release/auto-click:$PATH"
+ 
+ export ANDROID_SDK_ROOT="/Users/tsanthosh/Library/Android/sdk"
+ export ANDROID_NDK_ROOT="/Users/tsanthosh/Library/Android/sdk/ndk/25.1.8937393"
+
+#  export SDKMAN_DIR="$HOME/.sdkman"
+# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
